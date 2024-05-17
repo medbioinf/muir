@@ -9,7 +9,7 @@ RUN apt-get update -y \
     && apt-get install -y curl \
     && apt-get clean
 
-COPY docker/entrypoint.sh /usr/local/bin
+COPY ../entrypoint.sh /usr/local/bin
 
 # install comet
 RUN curl -L -o /usr/local/bin/comet https://github.com/UWPR/Comet/releases/download/${COMET_VERSION}/comet.linux.exe \
