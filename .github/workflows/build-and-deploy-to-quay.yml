@@ -51,6 +51,7 @@ jobs:
           labels: |
             org.opencontainers.image.title=${{ matrix.title }}
             org.opencontainers.image.description=${{ matrix.description }}
+            org.opencontainers.image.version=${{ matrix.version }}
 
       - name: Build and push
         uses: docker/build-push-action@v5
