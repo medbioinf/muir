@@ -15,20 +15,6 @@ jobs:
   build_and_push_docker:
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: true
-      matrix:
-        include:
-          - dockerfile: docker/comet-ms/Dockerfile
-            image: quay.io/medbioinf/comet-ms
-            version: v2024.01.0
-            title: Comet
-            description: Container for Comet
-    
-    env:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -43,22 +29,6 @@ jobs:
             username: ${{ secrets.QUAY_BOT_NAME }}
             password: ${{ secrets.QUAY_BOT_PASS }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ matrix.image }}
-          labels: |
-            org.opencontainers.image.title=${{ matrix.title }}
-            org.opencontainers.image.description=${{ matrix.description }}
-            org.opencontainers.image.version=${{ matrix.version }}
-
       - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-            context: docker/
-            file: ${{ matrix.dockerfile }}
-            push: true
-            tags: ${{ steps.meta.outputs.tags }}
-            labels: ${{ steps.meta.outputs.labels }}
-
+        run: |
+          ./build.sh

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export CONTAINER_VERSION=v2024.01.0
+
+export COMET_VERSION=$CONTAINER_VERSION
