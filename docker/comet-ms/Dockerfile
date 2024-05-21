@@ -10,7 +10,7 @@ COPY ./container.sh ./container.sh
 COPY ./entrypoint.sh /usr/local/bin
 
 # install comet
-RUN ./container.sh \
+RUN . ./container.sh \
     && curl -L -o /usr/local/bin/comet https://github.com/UWPR/Comet/releases/download/${COMET_VERSION}/comet.linux.exe \
     && chmod +x /usr/local/bin/comet
 

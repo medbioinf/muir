@@ -8,7 +8,7 @@ for d in */; do
   dir=$(echo ${d} | rev | cut -c 2- | rev)
   container_tag="quay.io/medbioinf/${dir}:${CONTAINER_VERSION}"
   echo "building ${container_tag}"
-  
+
   docker build -t ${container_tag} -f Dockerfile .
 
   docker push ${container_tag}
