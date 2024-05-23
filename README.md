@@ -4,11 +4,9 @@ This repo holds Dockerfiles for the build of containers regularly used by the #m
 
 The repo should not duplicate any work, but only holds Dockerfiles for tools which either don't have theri own (official) builds, are not available for current versions or need some tweaks in our pipelines, not provided by official containers.
 
-## Status of the container builds
-All containers are hosted on quay.io
-
-- comet-ms: https://uwpr.github.io/Comet/ [![Docker Repository on Quay](https://quay.io/repository/medbioinf/comet-ms/status "Docker Repository on Quay")](https://quay.io/repository/medbioinf/comet-ms)
-- Percolator: https://github.com/percolator/percolator [![Docker Repository on Quay](https://quay.io/repository/medbioinf/percolator/status "Docker Repository on Quay")](https://quay.io/repository/medbioinf/percolator)
+## Download container builds
+All containers are hosted on quay.io at 
+https://quay.io/organization/medbioinf
 
 ## Architecture of the repo
 - under `./docker`, each folder represents one Docker image to build
