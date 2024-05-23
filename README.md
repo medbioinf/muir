@@ -11,7 +11,7 @@ All containers are hosted on quay.io
 
 ## Architecture of the repo
 - under `./docker`, each folder represents one Docker image to build
-- each image needs one `Dockerfile` and the `container.sh`, which requires the environment variables `CONTAINER_TITLE`, `CONTAINER_VERSION` and `CONTAINER_DESCRIPTION` and can be used to pass further information for the build of the container
+- each image needs one `Dockerfile` and the `container.sh`, which requires the environment variable `CONTAINER_VERSION` and can be used to pass further information for the build of the container
 - the version number of the container should reflect the version of the original tool
 - the images are build and pushed after a successful push to GitHub
 
