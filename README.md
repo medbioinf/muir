@@ -7,7 +7,8 @@ The repo should not duplicate any work, but only holds Dockerfiles for tools whi
 ## Status of the container builds
 All containers are hosted on quay.io
 
-- comet-ms: [![Docker Repository on Quay](https://quay.io/repository/medbioinf/comet-ms/status "Docker Repository on Quay")](https://quay.io/repository/medbioinf/comet-ms) (https://uwpr.github.io/Comet/)
+- comet-ms: https://uwpr.github.io/Comet/ [![Docker Repository on Quay](https://quay.io/repository/medbioinf/comet-ms/status "Docker Repository on Quay")](https://quay.io/repository/medbioinf/comet-ms)
+- Percolator: https://github.com/percolator/percolator [![Docker Repository on Quay](https://quay.io/repository/medbioinf/percolator/status "Docker Repository on Quay")](https://quay.io/repository/medbioinf/percolator)
 
 ## Architecture of the repo
 - under `./docker`, each folder represents one Docker image to build
