@@ -9,9 +9,7 @@ for d in */; do
   container_tag="quay.io/medbioinf/${dir}:${CONTAINER_VERSION}"
   echo "building ${container_tag}"
 
-  docker buildx build -t ${container_tag} -f Dockerfile .
-
-  docker push ${container_tag}
+  docker buildx build -t ${container_tag} --push -f Dockerfile .
 
   cd ..
 done
