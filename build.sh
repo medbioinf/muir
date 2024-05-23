@@ -9,10 +9,7 @@ for d in */; do
   container_tag="quay.io/medbioinf/${dir}:${CONTAINER_VERSION}"
   echo "building ${container_tag}"
 
-  docker build --file Dockerfile \
-    --label org.opencontainers.image.description=${CONTAINER_DESCRIPTION} \
-    --label org.opencontainers.image.title=${CONTAINER_DESCRIPTION} \
-    --tag ${container_tag} .
+  docker build --label org.opencontainers.image.description=${CONTAINER_DESCRIPTION} --label org.opencontainers.image.title=${CONTAINER_DESCRIPTION} -t ${container_tag} -f Dockerfile .
 
   docker push ${container_tag}
 
