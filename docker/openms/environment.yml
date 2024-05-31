@@ -1,0 +1,7 @@
+name: openms
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - openms=3.1.0
