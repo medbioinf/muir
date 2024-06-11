@@ -6,12 +6,14 @@ for d in */; do
   cd $d
   . container.sh
   dir=$(echo ${d} | rev | cut -c 2- | rev)
-  container_tag="quay.io/medbioinf/${dir}:${CONTAINER_VERSION}"
-  echo "building ${container_tag}"
+  container="quay.io/medbioinf/${dir}"
+  container_ver="${container}:${CONTAINER_VERSION}"
+  echo "building ${container}"
 
-  docker build -t ${container_tag} -f Dockerfile .
+  docker build -t ${container_ver} -f Dockerfile .
+  docker tag ${container_ver} "${container}:latest"
 
-  docker push ${container_tag}
+  docker push -a ${container}
 
   cd ..
 done
