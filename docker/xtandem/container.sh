@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export CONTAINER_VERSION=2017.2.1.4
+
+export XTANDEM_VERSION=17-02-01-4
