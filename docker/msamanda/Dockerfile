@@ -7,7 +7,7 @@ COPY ./container.sh ./container.sh
 
 # install msamanda and dependencies
 RUN apt-get update -y \
-    && apt-get install -y curl \
+    && apt-get install -y curl libicu-dev \
     && apt-get clean
 
 RUN . ./container.sh \
