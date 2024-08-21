@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export CONTAINER_VERSION=v2024.03.26
+
+export MSGFPLUS_VERSION=v20240326
