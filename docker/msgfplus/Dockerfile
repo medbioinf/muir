@@ -1,7 +1,7 @@
-FROM eclipse-temurin:21 AS jre-build
+FROM --platform=amd64 eclipse-temurin:21 AS jre-build
 
 # Create a custom Java runtime
-RUN $JAVA_HOME/bin/jlink \
+RUN ${JAVA_HOME}/bin/jlink \
          --add-modules java.base \
          --strip-debug \
          --no-man-pages \
@@ -10,9 +10,12 @@ RUN $JAVA_HOME/bin/jlink \
          --output /javaruntime
 
 # Define the base image
-FROM ubuntu:24.04
+FROM --platform=amd64 ubuntu:24.04
+
+ENV DEBIAN_FRONTEND noninteractive
 ENV JAVA_HOME=/opt/java/openjdk
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
 COPY --from=jre-build /javaruntime $JAVA_HOME
 
 # copy over container information
