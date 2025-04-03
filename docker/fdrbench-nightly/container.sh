@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export CONTAINER_VERSION=146f77
+
+export FDRBENCH_VERSION=${CONTAINER_VERSION}
