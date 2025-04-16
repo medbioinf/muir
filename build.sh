@@ -15,5 +15,15 @@ for d in */; do
 
   docker push -a ${container}
 
+  # if not already, make public
+  curl -v -X POST \
+    -H "Authorization: Bearer ${1}" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "visibility": "public"
+    }' \
+    "https://quay.io/api/v1/repository/medbioinf/${dir}/changevisibility"
+
+
   cd ..
 done

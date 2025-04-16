@@ -31,4 +31,4 @@ jobs:
 
       - name: Build and push
         run: |
-          ./build.sh
+          ./build.sh ${{ secrets.QUAY_API_KEY }}
