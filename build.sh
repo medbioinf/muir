@@ -16,7 +16,7 @@ for d in */; do
   docker push -a ${container}
 
   # if not already, make public
-  curl -v -X POST \
+  curl -X POST \
     -H "Authorization: Bearer ${1}" \
     -H "Content-Type: application/json" \
     -d '{
