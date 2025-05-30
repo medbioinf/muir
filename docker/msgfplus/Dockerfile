@@ -8,6 +8,7 @@ RUN . ./container.sh \
     && wget -q -O /tmp/msgfplus.zip https://github.com/MSGFPlus/msgfplus/releases/download/${CONTAINER_VERSION}/MSGFPlus_${MSGFPLUS_VERSION}.zip \
     && mkdir /opt/msgfplus \
     && unzip /tmp/msgfplus.zip -d /opt/msgfplus \
+    && rm /tmp/msgfplus.zip \
     && apk add --no-cache bash \
     && rm -rf /var/lib/apt/lists/*
 
