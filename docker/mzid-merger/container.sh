@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export CONTAINER_VERSION=1.4.26
+
+export MZIDMERGER_VERSION=v1.4.26

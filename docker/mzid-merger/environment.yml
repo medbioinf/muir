@@ -1,0 +1,8 @@
+name: mzidmerger
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - mono=6.12
+  - unzip=6.0
