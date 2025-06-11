@@ -1,0 +1,12 @@
+name: tdf2mzml
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - setuptools
+  - git
+  - pip:
+    - -r requirements.txt
