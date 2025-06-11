@@ -1,5 +1,3 @@
 #!/bin/bash
 
 export CONTAINER_VERSION=0.4
-
-export TDF2MZML_VERSION=$CONTAINER_VERSION

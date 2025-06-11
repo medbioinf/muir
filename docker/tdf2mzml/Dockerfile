@@ -22,7 +22,7 @@ RUN echo 'show_banner: false' > ~/.mambarc \
 
 # install / tdf2mzml
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
-RUN git clone --branch "${TDF2MZML_VERSION}" https://github.com/mafreitas/tdf2mzml.git /tmp/tdf2mzml \
+RUN git clone --branch 0.4 https://github.com/mafreitas/tdf2mzml.git /tmp/tdf2mzml \
     && pip install /tmp/tdf2mzml \
     && rm -rf /tmp/tdf2mzml
 
