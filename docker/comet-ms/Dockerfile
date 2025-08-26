@@ -1,18 +1,13 @@
-FROM --platform=amd64 ubuntu:24.04
+FROM ubuntu:noble-20250716
 
-ENV DEBIAN_FRONTEND noninteractive
+COPY --chmod=755 ./entrypoint.sh /usr/local/bin
 
-COPY ./entrypoint.sh /usr/local/bin
-COPY ./container.sh ./container.sh
+ARG DOWNLOAD_URL
 
-# install comet and dependencies
-RUN apt-get update -y \
-    && apt-get install -y curl \
-    && apt-get clean
-
-RUN . ./container.sh \
-    && curl -L -o /usr/local/bin/comet https://github.com/UWPR/Comet/releases/download/${COMET_VERSION}/comet.linux.exe \
-    && chmod +x /usr/local/bin/comet
+# install comet and make executable
+ADD ${DOWNLOAD_URL} /usr/local/bin/
+RUN chmod +x /usr/local/bin/comet.linux.exe \
+    && ln -sf /usr/local/bin/comet.linux.exe /usr/local/bin/comet
 
 # setting entrypoint
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]

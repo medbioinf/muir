@@ -1,17 +1,15 @@
-FROM eclipse-temurin:21-alpine
+FROM quay.io/medbioinf/eclipse-temurin-alpine-bash:21.0.8_9-jre
 
-COPY ./container.sh ./container.sh
+ARG DOWNLOAD_URL
+ARG CONTAINER_VERSION
 
-RUN . ./container.sh \
-    # download and install fdrbench
-    && wget -q -O fdrbench-${CONTAINER_VERSION}.zip https://github.com/Noble-Lab/FDRBench/releases/download/v${CONTAINER_VERSION}/fdrbench-${CONTAINER_VERSION}.zip \
-    && unzip fdrbench-${CONTAINER_VERSION}.zip -d /opt \
+ADD ${DOWNLOAD_URL} /tmp/
+
+RUN unzip /tmp/fdrbench-${CONTAINER_VERSION}.zip -d /opt \
     # rename the directory to get rid of the version number
     && mv /opt/fdrbench-${CONTAINER_VERSION} /opt/fdrbench \
     && mv /opt/fdrbench/fdrbench-${CONTAINER_VERSION}.jar /opt/fdrbench/fdrbench.jar \
     # clean up
-    && rm -f fdrbench-${CONTAINER_VERSION}.zip \
-    # install bash
-    && apk add --no-cache bash
+    && rm -f /tmp/fdrbench-${CONTAINER_VERSION}.zip
 
     CMD ["java", "-jar", "/opt/fdrbench/fdrbench.jar"]

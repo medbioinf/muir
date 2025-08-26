@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Build output
+dist/
+build/
+out/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+Thumbs.db

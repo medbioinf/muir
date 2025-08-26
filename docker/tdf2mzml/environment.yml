@@ -8,5 +8,6 @@ dependencies:
   - pip
   - setuptools
   - git
+  - conda-forge::libgomp=12.3.0
   - pip:
     - -r requirements.txt
