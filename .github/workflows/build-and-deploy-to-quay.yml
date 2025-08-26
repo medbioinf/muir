@@ -31,4 +31,5 @@ jobs:
 
       - name: Build and push
         run: |
+          ./build-baseimages.sh ${{ secrets.QUAY_API_KEY }}
           ./build.sh ${{ secrets.QUAY_API_KEY }}

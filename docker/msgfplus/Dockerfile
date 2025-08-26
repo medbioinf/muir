@@ -1,15 +1,11 @@
-FROM --platform=amd64 eclipse-temurin:21-alpine
+FROM quay.io/medbioinf/eclipse-temurin-alpine-bash:21.0.8_9-jre
 
-# copy over container information
-COPY ./container.sh ./container.sh
+ARG DOWNLOAD_URL
+ADD ${DOWNLOAD_URL} /tmp/msgfplus.zip
 
-# install MS-GF+ and bash
-RUN . ./container.sh \
-    && wget -q -O /tmp/msgfplus.zip https://github.com/MSGFPlus/msgfplus/releases/download/${CONTAINER_VERSION}/MSGFPlus_${MSGFPLUS_VERSION}.zip \
-    && mkdir /opt/msgfplus \
+# install MS-GF+
+RUN mkdir /opt/msgfplus \
     && unzip /tmp/msgfplus.zip -d /opt/msgfplus \
-    && rm /tmp/msgfplus.zip \
-    && apk add --no-cache bash \
-    && rm -rf /var/lib/apt/lists/*
+    && rm /tmp/msgfplus.zip
 
 CMD ["java", "-jar", "/opt/msgfplus/MSGFPlus.jar"]

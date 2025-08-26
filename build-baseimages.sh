@@ -1,11 +1,11 @@
 #!/bin/bash
 
-cd docker
+cd docker-bases
 
-for d in */; do
+for d in "alpine-bash" "eclipse-temurin-alpine-bash"; do
   cd $d
   . container.sh
-  dir=$(echo ${d} | rev | cut -c 2- | rev)
+  dir=$(echo ${d} | rev | cut -c 1- | rev)
   container="quay.io/medbioinf/${dir}"
   container_ver="${container}:${CONTAINER_VERSION}"
   echo "building ${container}"
@@ -24,7 +24,6 @@ for d in */; do
       "visibility": "public"
     }' \
     "https://quay.io/api/v1/repository/medbioinf/${dir}/changevisibility"
-
 
   cd ..
 done

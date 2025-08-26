@@ -1,18 +1,14 @@
-FROM --platform=amd64 alpine:3.20.1
+FROM quay.io/medbioinf/alpine-bash:3.22.1
 
-ENV DEBIAN_FRONTEND noninteractive
-
-COPY ./entrypoint.sh /usr/local/bin
-COPY ./container.sh ./container.sh
+ARG DOWNLOAD_URL
+ARG SAGE_VERSION
+ADD ${DOWNLOAD_URL} /tmp/sage.tar.gz
+COPY --chmod=755 ./entrypoint.sh /usr/local/bin
 
 # install sage and bash
-RUN . ./container.sh \
-    && wget -q -O /tmp/sage.tar.gz https://github.com/lazear/sage/releases/download/${SAGE_VERSION}/sage-${SAGE_VERSION}-x86_64-unknown-linux-musl.tar.gz \
-    && tar -x --strip-components 1 -C /usr/local/bin -f /tmp/sage.tar.gz sage-${SAGE_VERSION}-x86_64-unknown-linux-musl/sage \
+RUN tar -x --strip-components 1 -C /usr/local/bin -f /tmp/sage.tar.gz sage-${SAGE_VERSION}-x86_64-unknown-linux-musl/sage \
     && rm -rf  /tmp/sage.tar.gz \
-    && chmod +x /usr/local/bin/sage \
-    && apk add --no-cache bash \
-    && rm -rf /var/lib/apt/lists/*
+    && chmod +x /usr/local/bin/sage
 
 # setting entrypoint
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]

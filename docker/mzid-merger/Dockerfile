@@ -1,16 +1,14 @@
-FROM mambaorg/micromamba:2.1.1-ubuntu22.04
+FROM mambaorg/micromamba:2.3.1-ubuntu24.04
 
-WORKDIR /home/mambauser
-# Copy environment.yml
-COPY --chown=mambauser:mambauser environment.yml .
-
-ADD --chown=mambauser:mambauser https://github.com/PNNL-Comp-Mass-Spec/MzidMerger/releases/download/v1.4.26/MzidMerger.zip /tmp/MzidMerger.zip
+ARG DOWNLOAD_URL
+ADD --chown=mambauser:mambauser ${DOWNLOAD_URL} /tmp/MzidMerger.zip
+COPY --chown=mambauser:mambauser environment.yml /home/mambauser/
 
 # setup of micromamba
 USER mambauser
 ENV HOME=/home/mambauser
 ENV ENV_NAME=mzidmerger
-
+WORKDIR /home/mambauser
 RUN echo 'show_banner: false' > ~/.mambarc \
     && micromamba env create -y -f environment.yml \
     && micromamba clean --all --yes

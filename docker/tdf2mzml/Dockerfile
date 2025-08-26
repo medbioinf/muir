@@ -1,24 +1,21 @@
-FROM mambaorg/micromamba:2.1.1-ubuntu22.04
+FROM mambaorg/micromamba:2.3.1-ubuntu24.04
 
-WORKDIR /home/mambauser
 # Copy environment.yml and requirements.txt
-COPY --chown=mambauser:mambauser environment.yml .
-COPY --chown=mambauser:mambauser requirements.txt .
-
-# installing dependencies
-USER root
-RUN apt update -y \
-    && apt install -y libgomp1 procps \
-    && apt clean
+COPY --chown=mambauser:mambauser environment.yml /home/mambauser/
+COPY --chown=mambauser:mambauser requirements.txt /home/mambauser/
 
 # setup of micromamba
 USER mambauser
 ENV HOME=/home/mambauser
 ENV ENV_NAME=tdf2mzml
+WORKDIR /home/mambauser
 
 RUN echo 'show_banner: false' > ~/.mambarc \
-    && micromamba env create -y -f environment.yml \
+    && micromamba env create -y -f /home/mambauser/environment.yml \
     && micromamba clean --all --yes
+
+# fixing the libgomp linking problem, as it is installed via conda
+ENV LD_LIBRARY_PATH=/opt/conda/envs/tdf2mzml/lib:/usr/lib/x86_64-linux-gnu/
 
 # install / tdf2mzml
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
