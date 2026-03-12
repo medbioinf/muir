@@ -1,0 +1,12 @@
+name: psm-utils
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - setuptools
+  - git
+  - pip:
+    - -r requirements.txt
