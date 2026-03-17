@@ -1,4 +1,4 @@
-FROM ubuntu:noble-20250716
+FROM ubuntu:noble-20260217
 
 COPY --chmod=755 ./entrypoint.sh /usr/local/bin
 

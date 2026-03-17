@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CONTAINER_VERSION=v2025.02.0
+export CONTAINER_VERSION=v2026.01.1
 
 DOWNLOAD_URL=https://github.com/UWPR/Comet/releases/download/${CONTAINER_VERSION}/comet.linux.exe
 
