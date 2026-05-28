@@ -8,6 +8,9 @@ COPY --chown=mambauser:mambauser requirements.txt /home/mambauser/
 USER mambauser
 ENV HOME=/home/mambauser
 ENV ENV_NAME=oktoberfest
+ENV LD_LIBRARY_PATH=/opt/conda/envs/oktoberfest/lib
+ENV MPLCONFIGDIR=/tmp/matplotlib
+ENV NUMBA_CACHE_DIR=/tmp/numba_cache
 
 RUN echo 'show_banner: false' > ~/.mambarc \
     && micromamba env create -y -f /home/mambauser/environment.yml \
