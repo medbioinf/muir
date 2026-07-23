@@ -1,4 +1,4 @@
-FROM mambaorg/micromamba:2.3.1-ubuntu24.04
+FROM mambaorg/micromamba:2.8.1-ubuntu26.04
 
 ARG DOWNLOAD_URL
 ADD --chown=mambauser:mambauser ${DOWNLOAD_URL} /tmp/maxquant.zip
