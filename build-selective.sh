@@ -14,6 +14,8 @@ set -eo pipefail
 QUAY_API_KEY="${1:-}"
 BASE_COMMIT="${2:-}"
 
+GIT_HASH=$(git rev-parse --short HEAD)
+
 # If --all is passed as base commit, build everything
 BUILD_ALL=false
 if [[ "${BASE_COMMIT:-}" == "--all" ]]; then
@@ -57,7 +59,7 @@ build_container() {
   cd "$dir"
   . container.sh
   container="quay.io/medbioinf/${container_name}"
-  container_ver="${container}:${CONTAINER_VERSION}"
+  container_ver="${container}:${CONTAINER_VERSION}-${GIT_HASH}"
   echo "=== Building ${container_ver} ==="
 
   docker build ${CONTAINER_BUILD_ARGS:-} --platform linux/amd64 -t ${container_ver} -f Dockerfile .
@@ -93,7 +95,7 @@ for d in */; do
     cd "$dir_name"
     . container.sh
     container="quay.io/medbioinf/${dir_name}"
-    container_ver="${container}:${CONTAINER_VERSION}"
+    container_ver="${container}:${CONTAINER_VERSION}-${GIT_HASH}"
     echo "=== Building base image ${container_ver} ==="
 
     docker build ${CONTAINER_BUILD_ARGS:-} --platform linux/amd64 -t ${container_ver} -f Dockerfile .
