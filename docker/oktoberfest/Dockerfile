@@ -1,4 +1,4 @@
-FROM mambaorg/micromamba:2.8.1-ubuntu26.04
+FROM mambaorg/micromamba:2.8.1-ubuntu24.04
 
 # Copy environment.yml and requirements.txt
 COPY --chown=mambauser:mambauser environment.yml /home/mambauser/
