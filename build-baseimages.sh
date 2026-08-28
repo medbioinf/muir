@@ -1,5 +1,7 @@
 #!/bin/bash
 
+GIT_HASH=$(git rev-parse --short HEAD)
+
 cd docker-bases
 
 for d in "alpine-bash" "eclipse-temurin-alpine-bash"; do
@@ -7,7 +9,7 @@ for d in "alpine-bash" "eclipse-temurin-alpine-bash"; do
   . container.sh
   dir=$(echo ${d} | rev | cut -c 1- | rev)
   container="quay.io/medbioinf/${dir}"
-  container_ver="${container}:${CONTAINER_VERSION}"
+  container_ver="${container}:${CONTAINER_VERSION}-${GIT_HASH}"
   echo "building ${container}"
 
   docker build ${CONTAINER_BUILD_ARGS} --platform linux/amd64 -t ${container_ver} -f Dockerfile .
